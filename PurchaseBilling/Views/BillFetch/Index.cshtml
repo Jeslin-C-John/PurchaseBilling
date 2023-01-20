@@ -1,0 +1,17 @@
+﻿@model PurchaseBilling.Models.BillingModel
+
+@using (Html.BeginForm())
+{
+
+    
+    <br/>
+    <div>
+        Bill Id
+        @Html.TextBoxFor(model => model.BillingId, new { @class = "form-control"})
+    </div>
+    <br/>
+    <div>
+        <input class="btn btn-primary" type="submit" value="Submit" />
+    </div>
+
+}
