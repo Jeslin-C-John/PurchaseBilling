@@ -2,4 +2,118 @@
 
 
 
-    View
+
+        @{
+            var NameCount = 0;
+        }
+       
+        @foreach (var instance in Model)
+        {
+            if (NameCount == 1)
+                break;
+            NameCount++;
+
+    <div style="width: 100%;">
+        <div style="width: 50%; height: 100px; float: left; ">
+                    bill #: @instance.BillingId
+                    <br/>
+                    Date: @instance.BillDate
+        </div>
+
+
+        <div style="margin-left: 50%; height: 100px; ">
+                    Customer Name: @instance.UserName
+                    <br />
+                    Address: @instance.Address
+                    <br />
+                    Phone: @instance.Phone
+        </div>
+    </div>
+        }
+
+
+
+
+<table id="table_id" class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>Sl. No.</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+
+
+
+    <tbody>
+
+        @{
+            var TotalAmount = 0;
+            var Count = 1;
+        }
+       
+        @foreach (var instance in Model)
+        {
+            
+
+            <tr>
+                <td>@Count</td>
+                <td>@instance.ProductName</td>
+                <td>@instance.Price</td>
+                <td>@instance.Quantity</td>
+                <td>₹ @instance.Amount</td>
+
+                
+
+            </tr>
+            TotalAmount = TotalAmount + instance.Amount;
+            Count++;
+
+            
+
+
+        }
+    </tbody>
+
+
+</table>
+
+<div style="float: right;">
+    Total Payable Amount: ₹ @TotalAmount
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-1.10.0.min.js"
+        integrity="sha256-2+LznWeWgL7AJ1ciaIG5rFP7GKemzzl+K75tRyTByOE="
+        crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+<script src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">

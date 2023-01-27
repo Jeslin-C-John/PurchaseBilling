@@ -11,7 +11,7 @@ namespace PurchaseBilling.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Bill(BillingModel e)
+        public IActionResult Index(BillingModel e)
         {
             var BillingId=e.BillingId;
 
@@ -50,6 +50,8 @@ namespace PurchaseBilling.Controllers
                          .Where(c => c.BillingId == e.BillingId)
                          .ToList();
 
+           
+
 
             var BillList = new List<Bill>();
             for(int i = 0; i < BillDetails.Count; i++)
@@ -61,7 +63,12 @@ namespace PurchaseBilling.Controllers
                 BillObj.UserName= BillDetails[i].UserName;
                 BillObj.Address= BillDetails[i].Address;
                 BillObj.Phone= BillDetails[i].Phone;
-                BillObj.BillDate= BillDetails[i].BillDate;
+
+                string? LongStringDate = BillDetails[i].BillDate.ToString();
+                string? ShortStringDate = LongStringDate.Substring(0, 10);
+                DateOnly.TryParse(ShortStringDate, out DateOnly DateOnlyShort);
+                BillObj.BillDate= DateOnlyShort;
+
                 BillObj.ProductId= BillDetails[i].ProductId;
                 BillObj.ProductName= BillDetails[i].ProductName;
                 BillObj.Price = BillDetails[i].ProductPrice;
@@ -73,7 +80,7 @@ namespace PurchaseBilling.Controllers
 
 
 
-            return View(BillList);
+            return View("Bill", BillList);
         }
     }
 }
